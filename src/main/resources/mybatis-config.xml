@@ -25,7 +25,7 @@
         </environment>
     </environments>
 
-    <mappers>
-        <mapper class="com.jim.mybatis.model.mapper.BookMapper"/>
-    </mappers>
+    <!--<mappers>-->
+    <!--<mapper class="com.jim.mybatis.model.mapper.BookMapper"/>-->
+    <!--</mappers>-->
 </configuration>

@@ -22,8 +22,8 @@
     <!-- Mybatis config -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
@@ -31,10 +31,5 @@
         <property name="url" value="${mysql.url}"/>
         <property name="username" value="${mysql.username}"/>
         <property name="password" value="${mysql.password}"/>
-    </bean>
-
-    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <property name="mapperInterface" value="com.jim.mybatis.model.mapper.BookMapper"/>
     </bean>
 </beans>
