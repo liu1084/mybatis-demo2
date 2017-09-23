@@ -5,31 +5,40 @@ package com.jim.mybatis.model.dto;
  * This class is ...
  */
 public class BookDTO {
-    private Long id;
-    private String name;
-    private String isbn;
+	private Long id;
+	private String name;
+	private String isbn;
+	private int downloadTimes;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getIsbn() {
-        return isbn;
-    }
+	public String getIsbn() {
+		return isbn;
+	}
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public int getDownloadTimes() {
+		return downloadTimes;
+	}
+
+	public void setDownloadTimes(int downloadTimes) {
+		this.downloadTimes = downloadTimes;
+	}
 }

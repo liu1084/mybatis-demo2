@@ -3,8 +3,52 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jim.mybatis.model.mapper.BookMapper">
-    <select id="books" resultType="com.jim.mybatis.model.entities.Book">
-        SELECT * FROM books LIMIT 1, 10;
+
+    <resultMap id="downloadTop10ResultMap" type="com.jim.mybatis.model.bo.BookBO">
+        <result column="downloadTimes" property="downloadTimes"/>
+        <result column="link" property="links"/>
+        <result column="comments" property="comments"/>
+        <result column="category_id" property="categories" javaType="List"/>
+        <result column="author_id" property="authors" javaType="List"/>
+        <result column="create_at" property="createAt" jdbcType="TIMESTAMP"/>
+        <result column="update_at" property="updateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <select id="books" resultType="com.jim.mybatis.model.po.Book">
+        SELECT *
+        FROM books
+        LIMIT #{pageStart}, #{pageSize};
+    </select>
+
+    <select id="booksByKeywords" resultType="Book" parameterType="map">
+        SELECT *
+        FROM books
+        WHERE 1=1 AND enabled = '1'
+        <if test="query != null and query != ''">
+            <bind name="query" value="'%' + query + '%'"/>
+            AND name LIKE #{query}
+            OR description LIKE #{query}
+            OR isbn LIKE #{query}
+        </if>
+        LIMIT 10
+    </select>
+
+    <select id="getDownloadTimesTop10" resultMap="downloadTop10ResultMap">
+        SELECT
+            *,
+            sum(t2.times) downloadTimes
+        FROM
+            books t1
+            LEFT JOIN links t2 ON t1.id = t2.book_id
+        WHERE
+            1 = 1
+            AND t1.enabled = '1'
+        GROUP BY
+            t2.book_id
+        HAVING downloadTimes > 0
+        ORDER BY downloadTimes DESC
+        LIMIT 10;
     </select>
 
     <select id="getBookById" resultType="Book">

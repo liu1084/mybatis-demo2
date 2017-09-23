@@ -1,8 +1,9 @@
 package com.jim.mybatis.model.mapper;
 
 import com.jim.mybatis.model.dto.BookDTO;
-import com.jim.mybatis.model.entities.Book;
+import com.jim.mybatis.model.po.Book;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,11 @@ import java.util.List;
 @Mapper
 public interface BookMapper {
 
-	List<Book> books();
+	List<Book> books(int pageStart, int pageSize);
+
+	List<Book> booksByKeywords(@Param("query") String query);
+
+	List<Book> getDownloadTimesTop10();
 
 	Book getBookById(Long bookId);
 

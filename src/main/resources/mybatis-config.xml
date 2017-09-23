@@ -9,7 +9,7 @@
         <setting name="logImpl" value="SLF4J"/>
     </settings>
     <typeAliases>
-        <package name="com.jim.mybatis.model.entities"/>
+        <package name="com.jim.mybatis.model.po"/>
     </typeAliases>
 
     <environments default="dev">
