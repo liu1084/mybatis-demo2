@@ -6,7 +6,10 @@
 
     <properties resource="database.properties"/>
     <settings>
+        <!--打开日志，并指定日志的实现类是slf4j-->
         <setting name="logImpl" value="SLF4J"/>
+        <!--开启缓存功能-->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
     <typeAliases>
         <package name="com.jim.mybatis.model.po"/>
