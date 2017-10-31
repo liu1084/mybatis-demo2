@@ -19,6 +19,8 @@
         <result column="create_at" property="createAt" jdbcType="TIMESTAMP"/>
         <result column="update_at" property="updateAt" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+
     <resultMap id="ResultMapWithBLOBs" type="com.jim.mybatis.model.po.Comment" extends="BaseResultMap">
         <!--
           WARNING - @mbggenerated
@@ -27,6 +29,12 @@
         -->
         <result column="content" property="content" jdbcType="LONGVARCHAR"/>
     </resultMap>
+
+    <select id="commentsForBook" resultMap="BaseResultMap">
+        SELECT *
+        FROM comments t1
+        WHERE t1.book_id = #{bookId};
+    </select>
     <sql id="Base_Column_List">
         <!--
           WARNING - @mbggenerated

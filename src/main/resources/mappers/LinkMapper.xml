@@ -24,6 +24,14 @@
         -->
         id, book_id, title, url, enabled, times, create_at, update_at
     </sql>
+
+    <select id="linksForBookDownload" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM links t1
+        WHERE t1.book_id = #{boookId};
+    </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         <!--
           WARNING - @mbggenerated

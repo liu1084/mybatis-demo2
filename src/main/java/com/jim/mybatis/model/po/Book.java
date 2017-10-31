@@ -7,18 +7,21 @@ package com.jim.mybatis.model.po;
 public class Book extends Base {
 	private String name;
 	private String description;
-	private String[] cover;
-	private Author[] authors;
+	private String[] covers;
+	private String[] authors;
 	private String isbn;
 	private String year;
 	private int pages;
 	private String language;
 	private double size;
 	private String format;
-	private Category[] categories;
+	private String[] categories;
 	private double rating;
 	private Boolean enabled;
-	
+	private Link[] links;
+	private Comment[] comments;
+	private int downloadTimes;
+
 	public String getName() {
 		return name;
 	}
@@ -36,27 +39,19 @@ public class Book extends Base {
 	}
 
 	public String[] getCover() {
-		return cover;
+		return covers;
 	}
 
-	public void setCover(String[] cover) {
-		this.cover = cover;
+	public void setCover(String[] covers) {
+		this.covers = covers;
 	}
 
-	public Author[] getAuthor() {
+	public String[] getAuthors() {
 		return authors;
 	}
 
-	public void setAuthor(Author[] authors) {
+	public void setAuthors(String[] authors) {
 		this.authors = authors;
-	}
-
-	public Category[] getCategories() {
-		return categories;
-	}
-
-	public void setCategory(Category[] categories) {
-		this.categories = categories;
 	}
 
 	public String getIsbn() {
@@ -107,6 +102,13 @@ public class Book extends Base {
 		this.format = format;
 	}
 
+	public String[] getCategories() {
+		return categories;
+	}
+
+	public void setCategories(String[] categories) {
+		this.categories = categories;
+	}
 
 	public double getRating() {
 		return rating;
@@ -122,5 +124,29 @@ public class Book extends Base {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Link[] getLinks() {
+		return links;
+	}
+
+	public void setLinks(Link[] links) {
+		this.links = links;
+	}
+
+	public Comment[] getComments() {
+		return comments;
+	}
+
+	public void setComments(Comment[] comments) {
+		this.comments = comments;
+	}
+
+	public int getDownloadTimes() {
+		return downloadTimes;
+	}
+
+	public void setDownloadTimes(int downloadTimes) {
+		this.downloadTimes = downloadTimes;
 	}
 }

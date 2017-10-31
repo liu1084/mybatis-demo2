@@ -4,16 +4,32 @@
 
 <mapper namespace="com.jim.mybatis.model.mapper.BookMapper">
     <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
-    <resultMap id="downloadTop10ResultMap" type="com.jim.mybatis.model.bo.BookBO">
+    <resultMap id="downloadTop10ResultMap" type="com.jim.mybatis.model.po.Book">
         <result column="downloadTimes" property="downloadTimes"/>
-        <result column="link" property="links"/>
-        <result column="comments" property="comments"/>
-        <result column="category_id" property="categories" javaType="List"/>
-        <result column="author_id" property="authors" javaType="List"/>
+        <result column="categories" property="categories" typeHandler="com.jim.mybatis.model.typehandler.CommaSplitTypeHandler"/>
+        <result column="authors" property="authors" typeHandler="com.jim.mybatis.model.typehandler.CommaSplitTypeHandler"/>
+        <result column="covers" property="covers" typeHandler="com.jim.mybatis.model.typehandler.CommaSplitTypeHandler"/>
         <result column="create_at" property="createAt" jdbcType="TIMESTAMP"/>
         <result column="update_at" property="updateAt" jdbcType="TIMESTAMP"/>
+
+        <association property="links" resultMap="links"/>
+        <association property="comments" resultMap="comments"/>
     </resultMap>
 
+    <resultMap id="comments" type="Comment"/>
+    <resultMap id="links" type="Link"/>
+
+    <select id="commentsForBook" resultMap="comments">
+        SELECT *
+        FROM comments t1
+        WHERE t1.book_id = #{bookId};
+    </select>
+
+    <select id="linksForBookDownload" resultMap="links">
+        SELECT *
+        FROM links t1
+        WHERE t1.book_id = #{boookId};
+    </select>
 
     <select id="books" resultType="com.jim.mybatis.model.po.Book">
         SELECT *
